@@ -58,3 +58,58 @@
     }
 
 }
+
+/* ========================================
+   DETALLE RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+
+    .detalle-contenido {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        padding: 25px;
+    }
+
+
+    .detalle-imagen img {
+        height: 400px;
+    }
+
+
+    .detalle-info h1 {
+        font-size: 30px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .detalle-videojuego {
+        padding: 30px 5%;
+    }
+
+
+    .detalle-contenido {
+        padding: 20px;
+    }
+
+
+    .detalle-imagen img {
+        height: 300px;
+    }
+
+
+    .detalle-acciones {
+        flex-direction: column;
+    }
+
+
+    .detalle-acciones button {
+        width: 100%;
+    }
+
+}

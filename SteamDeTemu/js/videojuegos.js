@@ -346,19 +346,249 @@ function actualizarCatalogo() {
 // EVENTOS
 // ========================================
 
-buscador.addEventListener("input", actualizarCatalogo);
+if (buscador) {
 
-filtroGenero.addEventListener("change", actualizarCatalogo);
+    buscador.addEventListener(
+        "input",
+        actualizarCatalogo
+    );
 
-filtroPlataforma.addEventListener("change", actualizarCatalogo);
+}
 
-ordenar.addEventListener("change", actualizarCatalogo);
+
+if (filtroGenero) {
+
+    filtroGenero.addEventListener(
+        "change",
+        actualizarCatalogo
+    );
+
+}
+
+
+if (filtroPlataforma) {
+
+    filtroPlataforma.addEventListener(
+        "change",
+        actualizarCatalogo
+    );
+
+}
+
+
+if (ordenar) {
+
+    ordenar.addEventListener(
+        "change",
+        actualizarCatalogo
+    );
+
+}
 
 
 // ========================================
 // INICIAR CATÁLOGO
 // ========================================
 
-cargarFiltros();
+if (contenedorVideojuegos) {
 
-actualizarCatalogo();
+    cargarFiltros();
+
+    actualizarCatalogo();
+
+}
+
+
+// ========================================
+// DETALLE DEL VIDEOJUEGO
+// ========================================
+
+function cargarDetalleVideojuego() {
+
+    // Buscar el contenedor del detalle
+    const contenidoDetalle =
+        document.getElementById("contenido-detalle");
+
+
+    // Si no estamos en la página de detalle,
+    // terminamos la función
+    if (!contenidoDetalle) {
+
+        return;
+
+    }
+
+
+    // Obtener los parámetros de la URL
+    const parametros =
+        new URLSearchParams(window.location.search);
+
+
+    // Obtener el ID del videojuego
+    const idVideojuego =
+        Number(parametros.get("id"));
+
+
+    // Buscar el videojuego en el arreglo
+    const videojuego =
+        videojuegos.find(function(juego) {
+
+            return juego.id === idVideojuego;
+
+        });
+
+
+    // Si no encontramos el videojuego
+    if (!videojuego) {
+
+        contenidoDetalle.innerHTML = `
+
+            <div class="error-detalle">
+
+                <h1>
+                    Videojuego no encontrado
+                </h1>
+
+                <p>
+                    El videojuego que buscas no existe.
+                </p>
+
+                <a
+                    href="catalogo.html"
+                    class="btn-principal"
+                >
+                    Volver al catálogo
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // Mostrar información del videojuego
+    contenidoDetalle.innerHTML = `
+
+        <article class="detalle-contenido">
+
+            <div class="detalle-imagen">
+
+                <img
+                    src="${videojuego.imagen}"
+                    alt="${videojuego.nombre}"
+                >
+
+            </div>
+
+
+            <div class="detalle-info">
+
+                <span class="detalle-genero">
+                    ${videojuego.genero}
+                </span>
+
+
+                <h1>
+                    ${videojuego.nombre}
+                </h1>
+
+
+                <p class="detalle-descripcion">
+
+                    Aquí podrás agregar una descripción completa
+                    del videojuego.
+
+                </p>
+
+
+                <div class="detalle-datos">
+
+                    <p>
+
+                        <strong>Género:</strong>
+
+                        ${videojuego.genero}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>Plataforma:</strong>
+
+                        ${videojuego.plataforma}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>Año de lanzamiento:</strong>
+
+                        ${videojuego.anio}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>Valoración:</strong>
+
+                        ⭐ ${videojuego.valoracion} / 10
+
+                    </p>
+
+                </div>
+
+
+                <!-- BOTONES -->
+
+                <div class="detalle-acciones">
+
+                    <button class="btn-favorito">
+
+                        ♡ Agregar a favoritos
+
+                    </button>
+
+
+                    <button class="btn-jugado">
+
+                        ✓ Marcar como jugado
+
+                    </button>
+
+
+                    <button class="btn-pendiente">
+
+                        ⏳ Marcar como pendiente
+
+                    </button>
+
+                </div>
+
+
+                <a
+                    href="catalogo.html"
+                    class="btn-volver"
+                >
+                    ← Volver al catálogo
+                </a>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+// ========================================
+// CARGAR DETALLE
+// ========================================
+
+cargarDetalleVideojuego();
