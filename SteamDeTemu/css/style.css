@@ -277,3 +277,346 @@ main {
 .footer p {
     margin: 5px;
 }
+
+
+/* ========================================
+   CATÁLOGO
+======================================== */
+
+.catalogo {
+    padding: 60px 8%;
+}
+
+.catalogo-encabezado {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.catalogo-encabezado h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.catalogo-encabezado p {
+    color: #666;
+}
+
+
+/* FILTROS */
+
+.filtros {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filtro-grupo label {
+    font-weight: bold;
+}
+
+.filtro-grupo input,
+.filtro-grupo select {
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    min-width: 180px;
+}
+
+
+/* CONTADOR */
+
+.contador-juegos {
+    margin-bottom: 25px;
+
+    font-weight: bold;
+}
+
+
+/* CONTENEDOR */
+
+.contenedor-videojuegos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 25px;
+}
+
+
+/* TARJETA */
+
+.tarjeta-juego {
+    background-color: white;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+.tarjeta-juego:hover {
+    transform: translateY(-5px);
+}
+
+
+.imagen-juego {
+    width: 100%;
+
+    height: 300px;
+
+    object-fit: cover;
+}
+
+
+.contenido-juego {
+    padding: 20px;
+}
+
+
+.contenido-juego h2 {
+    font-size: 20px;
+
+    margin-bottom: 15px;
+}
+
+
+.contenido-juego p {
+    margin-bottom: 8px;
+}
+
+
+.btn-detalle {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 15px;
+
+    background-color: #8b5cf6;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+}
+
+
+/* MENSAJE VACÍO */
+
+.mensaje-vacio {
+    display: none;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    margin: 40px;
+}
+
+/* ========================================
+   DETALLE DEL VIDEOJUEGO
+======================================== */
+
+.detalle-videojuego {
+    padding: 60px 8%;
+    min-height: 600px;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+.detalle-contenido {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 50px;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* IMAGEN */
+
+.detalle-imagen img {
+    width: 100%;
+
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+
+/* INFORMACIÓN */
+
+.detalle-info {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.detalle-genero {
+    display: inline-block;
+
+    width: fit-content;
+
+    background-color: #e9ddff;
+
+    color: #6d28d9;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    margin-bottom: 15px;
+
+    font-weight: bold;
+}
+
+
+.detalle-info h1 {
+    font-size: 40px;
+
+    margin-bottom: 20px;
+}
+
+
+.detalle-descripcion {
+    line-height: 1.6;
+
+    color: #555;
+
+    margin-bottom: 25px;
+}
+
+
+/* DATOS */
+
+.detalle-datos {
+    margin-bottom: 25px;
+}
+
+
+.detalle-datos p {
+    margin-bottom: 10px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+/* BOTONES */
+
+.detalle-acciones {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+
+.detalle-acciones button {
+    padding: 12px 15px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+/* FAVORITO */
+
+.btn-favorito {
+    background-color: #8b5cf6;
+
+    color: white;
+}
+
+
+/* JUGADO */
+
+.btn-jugado {
+    background-color: #22c55e;
+
+    color: white;
+}
+
+
+/* PENDIENTE */
+
+.btn-pendiente {
+    background-color: #f59e0b;
+
+    color: white;
+}
+
+
+/* VOLVER */
+
+.btn-volver {
+    color: #8b5cf6;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+/* ERROR */
+
+.error-detalle {
+    text-align: center;
+
+    padding: 100px 20px;
+}
