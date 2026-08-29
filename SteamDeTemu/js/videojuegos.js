@@ -11,6 +11,7 @@ const videojuegos = [
         plataforma: "PC",
         anio: 2015,
         valoracion: 9.5,
+        descripcion: "The Witcher 3: Wild Hunt es un videojuego de rol de mundo abierto en el que acompañas a Geralt de Rivia en la búsqueda de su hija adoptiva mientras enfrentas criaturas, conflictos políticos y decisiones que pueden cambiar el desarrollo de la historia.",
         imagen: "img/juegos/the-witcher-3.jpg"
     },
 
@@ -21,6 +22,7 @@ const videojuegos = [
         plataforma: "PC",
         anio: 2018,
         valoracion: 9.7,
+        descripcion: "Red Dead Redemption 2 es una aventura de acción ambientada en el viejo oeste. El jugador controla a Arthur Morgan, miembro de una banda de forajidos que debe sobrevivir mientras el mundo moderno comienza a reemplazar la vida que conocen.",
         imagen: "img/juegos/red-dead-redemption-2.jpg"
     },
 
@@ -31,6 +33,7 @@ const videojuegos = [
         plataforma: "PlayStation",
         anio: 2018,
         valoracion: 9.6,
+        descripcion: "God of War sigue la historia de Kratos y su hijo Atreus en un viaje a través de los reinos de la mitología nórdica. Juntos deberán enfrentar poderosos enemigos y superar diversos desafíos mientras buscan cumplir una importante promesa.",
         imagen: "img/juegos/god-of-war.jpg"
     },
 
@@ -41,6 +44,7 @@ const videojuegos = [
         plataforma: "Nintendo",
         anio: 2017,
         valoracion: 9.8,
+        descripcion: "The Legend of Zelda: Breath of the Wild es una aventura de mundo abierto en la que Link despierta tras un largo sueño y debe explorar el reino de Hyrule para recuperar sus recuerdos y enfrentarse a la amenaza de Ganon.",
         imagen: "img/juegos/zelda-breath-of-the-wild.jpg"
     },
 
@@ -51,6 +55,7 @@ const videojuegos = [
         plataforma: "Xbox",
         anio: 2021,
         valoracion: 8.2,
+        descripcion: "Halo Infinite continúa las aventuras del Jefe Maestro en una nueva misión para enfrentar a sus enemigos y proteger a la humanidad. Combina una campaña de acción con enfrentamientos multijugador utilizando armas, vehículos y habilidades futuristas.",
         imagen: "img/juegos/halo-infinite.jpg"
     },
 
@@ -61,6 +66,7 @@ const videojuegos = [
         plataforma: "PC",
         anio: 2011,
         valoracion: 9.0,
+        descripcion: "Minecraft es un videojuego de construcción y supervivencia que permite explorar mundos generados de forma procedural. Los jugadores pueden recolectar recursos, construir estructuras, combatir criaturas y jugar de manera creativa o en modo supervivencia.",
         imagen: "img/juegos/minecraft.jpg"
     }
 
@@ -498,8 +504,7 @@ function cargarDetalleVideojuego() {
 
                 <p class="detalle-descripcion">
 
-                    Aquí podrás agregar una descripción completa
-                    del videojuego.
+                    ${videojuego.descripcion}
 
                 </p>
 
@@ -548,24 +553,25 @@ function cargarDetalleVideojuego() {
 
                 <div class="detalle-acciones">
 
-                    <button class="btn-favorito">
-
+                    <button
+                        class="btn-favorito"
+                        data-id="${videojuego.id}"
+                    >
                         ♡ Agregar a favoritos
-
                     </button>
 
-
-                    <button class="btn-jugado">
-
+                    <button
+                        class="btn-jugado"
+                        data-id="${videojuego.id}"
+                    >
                         ✓ Marcar como jugado
-
                     </button>
 
-
-                    <button class="btn-pendiente">
-
+                    <button
+                        class="btn-pendiente"
+                        data-id="${videojuego.id}"
+                    >
                         ⏳ Marcar como pendiente
-
                     </button>
 
                 </div>
