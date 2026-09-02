@@ -120,3 +120,50 @@
     }
 
 }
+
+/* =========================================
+   BIBLIOTECA RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .biblioteca-estadisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .biblioteca-filtros {
+        flex-wrap: wrap;
+    }
+
+    .biblioteca-filtros button {
+        flex: 1;
+        min-width: 120px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .biblioteca-estadisticas {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .estadistica {
+        padding: 15px 10px;
+    }
+
+    .estadistica h2 {
+        font-size: 24px;
+    }
+
+    .biblioteca-filtros {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .biblioteca-filtros button {
+        width: 100%;
+    }
+
+}
