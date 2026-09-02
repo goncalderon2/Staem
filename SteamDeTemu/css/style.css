@@ -733,3 +733,889 @@ main {
     color: #8b5cf6;
     font-weight: bold;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    min-height: 70vh;
+}
+
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 8%;
+
+    background-color: #171717;
+}
+
+
+/* LOGO */
+
+.logo {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #8b5cf6;
+}
+
+
+/* MENÚ */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar a {
+    color: white;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #8b5cf6;
+}
+
+
+/* BOTÓN LOGIN */
+
+.btn-login {
+    background-color: #8b5cf6;
+
+    padding: 10px 16px;
+
+    border-radius: 6px;
+}
+
+.btn-login:hover {
+    color: white !important;
+    background-color: #6d28d9;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background-color: #242424;
+
+    color: white;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.6;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   BOTÓN PRINCIPAL
+========================= */
+
+.btn-primary {
+    display: inline-block;
+
+    background-color: #8b5cf6;
+    color: white;
+
+    padding: 13px 22px;
+
+    border-radius: 6px;
+
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #6d28d9;
+}
+
+
+/* =========================
+   VIDEOJUEGOS DESTACADOS
+========================= */
+
+.featured {
+    padding: 70px 8%;
+    text-align: center;
+}
+
+.featured h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+
+/* CONTENEDOR */
+
+.game-container {
+    display: flex;
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+}
+
+
+/* TARJETA */
+
+.game-card {
+    width: 280px;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* IMAGEN */
+
+.game-image {
+    height: 190px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #d1d1d1;
+
+    color: #555;
+}
+
+
+/* INFORMACIÓN */
+
+.game-info {
+    padding: 20px;
+}
+
+.game-info h3 {
+    margin-bottom: 10px;
+}
+
+.game-info p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.game-info a {
+    display: inline-block;
+
+    background-color: #8b5cf6;
+
+    color: white;
+
+    padding: 9px 15px;
+
+    border-radius: 5px;
+}
+
+
+/* =========================
+   SOBRE STEAMDETEMU
+========================= */
+
+.about-preview {
+    padding: 70px 8%;
+
+    text-align: center;
+
+    background-color: #e9e9e9;
+}
+
+.about-preview h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.about-preview p {
+    max-width: 700px;
+
+    margin: 0 auto 30px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    padding: 30px;
+
+    text-align: center;
+
+    background-color: #171717;
+
+    color: white;
+}
+
+.footer p {
+    margin: 5px;
+}
+
+
+/* ========================================
+   CATÁLOGO
+======================================== */
+
+.catalogo {
+    padding: 60px 8%;
+}
+
+.catalogo-encabezado {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.catalogo-encabezado h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.catalogo-encabezado p {
+    color: #666;
+}
+
+
+/* FILTROS */
+
+.filtros {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filtro-grupo label {
+    font-weight: bold;
+}
+
+.filtro-grupo input,
+.filtro-grupo select {
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    min-width: 180px;
+}
+
+
+/* CONTADOR */
+
+.contador-juegos {
+    margin-bottom: 25px;
+
+    font-weight: bold;
+}
+
+
+/* CONTENEDOR */
+
+.contenedor-videojuegos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 25px;
+}
+
+
+/* TARJETA */
+
+.tarjeta-juego {
+    background-color: white;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+            0 4px 10px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+.tarjeta-juego:hover {
+    transform: translateY(-5px);
+}
+
+
+.imagen-juego {
+    width: 100%;
+
+    height: 300px;
+
+    object-fit: cover;
+}
+
+
+.contenido-juego {
+    padding: 20px;
+}
+
+
+.contenido-juego h2 {
+    font-size: 20px;
+
+    margin-bottom: 15px;
+}
+
+
+.contenido-juego p {
+    margin-bottom: 8px;
+}
+
+
+.btn-detalle {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 15px;
+
+    background-color: #8b5cf6;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+}
+
+
+/* MENSAJE VACÍO */
+
+.mensaje-vacio {
+    display: none;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    margin: 40px;
+}
+
+/* ========================================
+   DETALLE DEL VIDEOJUEGO
+======================================== */
+
+.detalle-videojuego {
+    padding: 60px 8%;
+    min-height: 600px;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+.detalle-contenido {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 50px;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow:
+            0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* IMAGEN */
+
+.detalle-imagen img {
+    width: 100%;
+
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+
+/* INFORMACIÓN */
+
+.detalle-info {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.detalle-genero {
+    display: inline-block;
+
+    width: fit-content;
+
+    background-color: #e9ddff;
+
+    color: #6d28d9;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    margin-bottom: 15px;
+
+    font-weight: bold;
+}
+
+
+.detalle-info h1 {
+    font-size: 40px;
+
+    margin-bottom: 20px;
+}
+
+
+.detalle-descripcion {
+    line-height: 1.6;
+
+    color: #555;
+
+    margin-bottom: 25px;
+}
+
+
+/* DATOS */
+
+.detalle-datos {
+    margin-bottom: 25px;
+}
+
+
+.detalle-datos p {
+    margin-bottom: 10px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+/* BOTONES */
+
+.detalle-acciones {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+
+.detalle-acciones button {
+    padding: 12px 15px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+/* FAVORITO */
+
+.btn-favorito {
+    background-color: #8b5cf6;
+
+    color: white;
+}
+
+
+/* JUGADO */
+
+.btn-jugado {
+    background-color: #22c55e;
+
+    color: white;
+}
+
+
+/* PENDIENTE */
+
+.btn-pendiente {
+    background-color: #f59e0b;
+
+    color: white;
+}
+
+
+/* VOLVER */
+
+.btn-volver {
+    color: #8b5cf6;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+/* ERROR */
+
+.error-detalle {
+    text-align: center;
+
+    padding: 100px 20px;
+}
+.auth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 70px 8%;
+
+    min-height: 60vh;
+}
+
+.auth-card {
+    background-color: white;
+
+    width: 100%;
+    max-width: 420px;
+
+    padding: 40px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.auth-subtitulo {
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+}
+
+.mensaje-formulario {
+    display: none;
+
+    margin-bottom: 15px;
+    padding: 10px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+}
+
+.mensaje-error {
+    display: block;
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.mensaje-exito {
+    display: block;
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.btn-auth {
+    width: 100%;
+
+    padding: 13px;
+
+    background-color: #8b5cf6;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-auth:hover {
+    background-color: #6d28d9;
+}
+
+.auth-enlace {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.auth-enlace a {
+    color: #8b5cf6;
+    font-weight: bold;
+}
+
+/* ========================================
+   NOSOTROS
+======================================== */
+
+.nosotros-hero {
+    padding: 80px 8%;
+
+    text-align: center;
+
+    background-color: #242424;
+
+    color: white;
+}
+
+.nosotros-hero h1 {
+    font-size: 42px;
+
+    margin-bottom: 20px;
+}
+
+.nosotros-hero p {
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    font-size: 18px;
+    line-height: 1.6;
+
+    color: #ccc;
+}
+
+
+/* MISIÓN / VISIÓN / VALORES */
+
+.nosotros-mision {
+    display: flex;
+
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+    padding: 70px 8%;
+
+    background-color: #e9e9e9;
+}
+
+.mision-card {
+    width: 300px;
+
+    background-color: white;
+
+    padding: 30px 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+.mision-card:hover {
+    transform: translateY(-5px);
+}
+
+.mision-card h2 {
+    font-size: 20px;
+
+    margin-bottom: 12px;
+
+    color: #6d28d9;
+}
+
+.mision-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/* EQUIPO */
+
+.equipo {
+    padding: 70px 8%;
+
+    text-align: center;
+}
+
+.equipo h2 {
+    font-size: 32px;
+
+    margin-bottom: 40px;
+}
+
+.equipo-container {
+    display: flex;
+
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 25px;
+}
+
+.miembro-card {
+    width: 220px;
+
+    background-color: white;
+
+    padding: 35px 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+.miembro-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.miembro-avatar {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: #8b5cf6;
+
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.miembro-card h3 {
+    margin-bottom: 8px;
+}
+
+.miembro-card p {
+    color: #666;
+    font-size: 14px;
+}
