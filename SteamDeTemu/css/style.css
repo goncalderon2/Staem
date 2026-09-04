@@ -930,14 +930,13 @@ main {
 
 .game-image {
     height: 190px;
+    overflow: hidden;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: #d1d1d1;
-
-    color: #555;
+.game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 
@@ -1906,4 +1905,81 @@ main {
 
 .biblioteca-vacia .btn-catalogo:hover {
     background-color: #7446d4;
+}
+
+/* INFORMACIÓN ADICIONAL DE LA BIBLIOTECA (PARA MAS ORDEN VISUAL EN LAS TARJETAS)*/
+
+.biblioteca-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.biblioteca-info span {
+    background-color: #f4f4f4;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+
+/* ACCIONES DE LA TARJETA */
+
+.biblioteca-acciones {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+/* PROGRESO DE LA BIBLIOTECA */
+
+.biblioteca-progreso {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.progreso-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.progreso-encabezado h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+#porcentaje-progreso {
+    font-weight: bold;
+    color: #8b5cf6;
+}
+
+.barra-progreso {
+    width: 100%;
+    height: 12px;
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barra-progreso-llenado {
+    height: 100%;
+    width: 0%;
+    background-color: #8b5cf6;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.biblioteca-progreso p {
+    margin: 10px 0 0;
+    color: #666;
+    font-size: 14px;
 }

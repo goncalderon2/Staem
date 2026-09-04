@@ -64,6 +64,34 @@
             </div>
         </div>
 
+        <!-- PROGRESO DE LA BIBLIOTECA -->
+
+        <div class="biblioteca-progreso">
+
+            <div class="progreso-encabezado">
+
+                <h2>Progreso de mi biblioteca</h2>
+
+                <span id="porcentaje-progreso">0%</span>
+
+            </div>
+
+            <div class="barra-progreso">
+
+                <div
+                        id="barra-progreso-llenado"
+                        class="barra-progreso-llenado">
+                </div>
+
+            </div>
+
+            <p id="texto-progreso">
+                0 de 0 videojuegos jugados
+            </p>
+
+        </div>
+
+
         <!-- BUSCADOR -->
         <div class="biblioteca-buscador">
             <label for="buscar-videojuego">Buscar en mi biblioteca</label>
@@ -90,11 +118,23 @@
                 <!-- Los videojuegos se mostrarán aquí mediante JavaScript -->
             </div>
 
-            <!-- CONTENEDOR VACÍO ACTUALIZADO PARA USAR TUS ESTILOS CSS -->
-            <div id="mensaje-biblioteca-vacio" class="biblioteca-vacia" style="display: none;">
-                <h3>No tienes videojuegos aquí</h3>
-                <p>Aún no has agregado títulos a esta categoría o la búsqueda no arrojó resultados.</p>
-                <a href="catalogo.html" class="btn-catalogo">Explorar Catálogo</a>
+            <!-- MENSAJE CUANDO NO HAY VIDEOJUEGOS (JS podra cambiar el texto dependiendo la situacion)-->
+            <div
+                    id="mensaje-biblioteca-vacio"
+                    class="biblioteca-vacia"
+                    style="display: none;"
+            >
+
+                <h3>🎮 Tu biblioteca está vacía</h3>
+
+                <p id="texto-biblioteca-vacia">
+                    Explora nuestro catálogo y agrega tus primeros videojuegos.
+                </p>
+
+                <a href="catalogo.html" class="btn-catalogo">
+                    Ir al catálogo
+                </a>
+
             </div>
         </div>
 

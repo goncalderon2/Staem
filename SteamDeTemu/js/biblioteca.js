@@ -436,7 +436,7 @@ function mostrarBiblioteca(filtro = "todos", textoBusqueda = "") {
 
     });
 
-    // Aplicar búsqueda
+ // Aplicar búsqueda
 
     if (textoBusqueda !== "") {
 
@@ -455,6 +455,18 @@ function mostrarBiblioteca(filtro = "todos", textoBusqueda = "") {
     if (juegosMostrar.length === 0) {
 
         mensajeBibliotecaVacio.style.display = "block";
+
+        if (textoBusqueda !== "") {
+
+            document.getElementById("texto-biblioteca-vacio").textContent =
+                "No encontramos videojuegos que coincidan con tu búsqueda.";
+
+        } else {
+
+            document.getElementById("texto-biblioteca-vacio").textContent =
+                "No tienes videojuegos guardados en esta categoría.";
+
+        }
 
         return;
 
@@ -503,40 +515,48 @@ function mostrarBiblioteca(filtro = "todos", textoBusqueda = "") {
         }
 
         tarjeta.innerHTML = `
-            <img 
-                src="${videojuego.imagen}" 
-                alt="${videojuego.nombre}" 
-                class="imagen-juego"
+    <img 
+        src="${videojuego.imagen}" 
+        alt="${videojuego.nombre}" 
+        class="imagen-juego"
+    >
+
+    <div class="contenido-juego">
+
+        <h3>${videojuego.nombre}</h3>
+
+        <p>${videojuego.genero}</p>
+
+        <div class="biblioteca-info">
+            <span>⭐ ${videojuego.valoracion}</span>
+            <span>${videojuego.plataforma}</span>
+            <span>${videojuego.anio}</span>
+        </div>
+
+        <div>
+            ${estado}
+        </div>
+
+        <div class="biblioteca-acciones">
+
+            <a 
+                href="detalle-videojuego.html?id=${videojuego.id}" 
+                class="btn-detalle"
             >
+                Ver detalle
+            </a>
 
-            <div class="contenido-juego">
+            <button 
+                class="btn-quitar-biblioteca"
+                data-id="${videojuego.id}"
+            >
+                Quitar
+            </button>
 
-                <h3>${videojuego.nombre}</h3>
+        </div>
 
-                <p>${videojuego.genero}</p>
-
-                <p>⭐ ${videojuego.valoracion}</p>
-
-                <div>
-                    ${estado}
-                </div>
-
-                <a 
-                    href="detalle-videojuego.html?id=${videojuego.id}" 
-                    class="btn-detalle"
-                >
-                    Ver detalle
-                </a>
-
-                <button 
-                    class="btn-quitar-biblioteca"
-                    data-id="${videojuego.id}"
-                >
-                    Quitar
-                </button>
-
-            </div>
-        `;
+    </div>
+`;
 
         contenedorBiblioteca.appendChild(tarjeta);
 
@@ -568,9 +588,22 @@ function agregarEventosQuitar() {
 
             const biblioteca = obtenerBiblioteca();
 
-            quitarVideojuego("jugados", idVideojuego);
-            quitarVideojuego("pendientes", idVideojuego);
-            quitarVideojuego("favoritos", idVideojuego);
+            biblioteca.jugados =
+                biblioteca.jugados.filter(function(id) {
+                    return id !== idVideojuego;
+                });
+
+            biblioteca.pendientes =
+                biblioteca.pendientes.filter(function(id) {
+                    return id !== idVideojuego;
+                });
+
+            biblioteca.favoritos =
+                biblioteca.favoritos.filter(function(id) {
+                    return id !== idVideojuego;
+                });
+
+            guardarBiblioteca(biblioteca);
 
             const filtroActivo = document.querySelector(
                 ".biblioteca-filtros .filtro-activo"
@@ -584,6 +617,8 @@ function agregarEventosQuitar() {
             );
 
             actualizarEstadisticasBiblioteca();
+
+            actualizarProgresoBiblioteca();
 
         });
 
@@ -671,4 +706,43 @@ if (contenedorBiblioteca) {
 
     actualizarEstadisticasBiblioteca();
 
+    actualizarProgresoBiblioteca();
+
+}
+
+// ACTUALIZAR PROGRESO DE LA BIBLIOTECA
+
+function actualizarProgresoBiblioteca() {
+
+    const biblioteca = obtenerBiblioteca();
+
+    const totalVideojuegos = new Set([
+        ...biblioteca.jugados,
+        ...biblioteca.pendientes,
+        ...biblioteca.favoritos
+    ]).size;
+
+    const totalJugados = biblioteca.jugados.length;
+
+    let porcentaje = 0;
+
+    if (totalVideojuegos > 0) {
+
+        porcentaje = Math.round(
+            (totalJugados / totalVideojuegos) * 100
+        );
+
+    }
+
+    document.getElementById("porcentaje-progreso").textContent =
+        porcentaje + "%";
+
+    document.getElementById("barra-progreso-llenado").style.width =
+        porcentaje + "%";
+
+    document.getElementById("texto-progreso").textContent =
+        totalJugados +
+        " de " +
+        totalVideojuegos +
+        " videojuegos jugados";
 }
