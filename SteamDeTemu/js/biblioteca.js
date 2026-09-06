@@ -19,7 +19,8 @@ function obtenerBiblioteca() {
         return {
             favoritos: [],
             jugados: [],
-            pendientes: []
+            pendientes: [],
+            valoraciones: {}
         };
 
     }
@@ -27,7 +28,17 @@ function obtenerBiblioteca() {
 
     // Convertimos el texto guardado
     // en un objeto JavaScript
-    return JSON.parse(biblioteca);
+    const datos = JSON.parse(biblioteca);
+
+
+    // Comprobamos que exista el apartado
+    // de valoraciones
+    if (!datos.valoraciones) {
+        datos.valoraciones = {};
+    }
+
+
+    return datos;
 
 }
 
@@ -382,6 +393,110 @@ function iniciarBotonesBiblioteca() {
 
 }
 
+// ========================================
+// VALORACIÓN PERSONAL
+// ========================================
+
+function guardarValoracion(idVideojuego, valoracion) {
+
+    const biblioteca = obtenerBiblioteca();
+
+    idVideojuego = Number(idVideojuego);
+    valoracion = Number(valoracion);
+
+    biblioteca.valoraciones[idVideojuego] = valoracion;
+
+    guardarBiblioteca(biblioteca);
+}
+
+
+function obtenerValoracion(idVideojuego) {
+
+    const biblioteca = obtenerBiblioteca();
+
+    idVideojuego = Number(idVideojuego);
+
+    return biblioteca.valoraciones[idVideojuego];
+}
+
+
+function iniciarValoracion() {
+
+    const campoValoracion =
+        document.getElementById("valoracion-personal");
+
+    const botonGuardar =
+        document.getElementById("guardar-valoracion");
+
+    const mensaje =
+        document.getElementById("mensaje-valoracion");
+
+
+    // Si no estamos en la página de detalle,
+    // no hacemos nada
+    if (!campoValoracion || !botonGuardar) {
+        return;
+    }
+
+
+    // Obtener el ID del videojuego desde la URL
+    const parametros =
+        new URLSearchParams(window.location.search);
+
+    const idVideojuego =
+        Number(parametros.get("id"));
+
+
+    // Comprobar si ya existe una valoración
+    const valoracionGuardada =
+        obtenerValoracion(idVideojuego);
+
+
+    // Si ya había una valoración,
+    // la mostramos en el input
+    if (valoracionGuardada !== undefined) {
+
+        campoValoracion.value =
+            valoracionGuardada;
+
+        mensaje.textContent =
+            `Tu valoración actual es ${valoracionGuardada} / 10.`;
+    }
+
+
+    // Guardar valoración
+    botonGuardar.addEventListener("click", function() {
+
+        const valoracion =
+            Number(campoValoracion.value);
+
+
+        // Comprobar que esté entre 1 y 10
+        if (
+            isNaN(valoracion) ||
+            valoracion < 1 ||
+            valoracion > 10
+        ) {
+
+            mensaje.textContent =
+                "La valoración debe estar entre 1 y 10.";
+
+            return;
+        }
+
+
+        guardarValoracion(
+            idVideojuego,
+            valoracion
+        );
+
+
+        mensaje.textContent =
+            `Tu valoración es ${valoracion} / 10.`;
+
+    });
+
+}
 
 // ========================================
 // INICIAR
@@ -390,3 +505,361 @@ function iniciarBotonesBiblioteca() {
 iniciarBotonesBiblioteca();
 
 actualizarBotones();
+
+iniciarValoracion();
+
+// ELEMENTOS DE LA BIBLIOTECA
+
+const contenedorBiblioteca = document.getElementById("contenedor-biblioteca");
+const mensajeBibliotecaVacio = document.getElementById("mensaje-biblioteca-vacio");
+const buscarVideojuego = document.getElementById("buscar-videojuego");
+const botonesFiltro = document.querySelectorAll(".biblioteca-filtros button");
+
+// MOSTRAR VIDEOJUEGOS DE LA BIBLIOTECA
+
+function mostrarBiblioteca(filtro = "todos", textoBusqueda = "") {
+
+    if (!contenedorBiblioteca) {
+        return;
+    }
+
+    const biblioteca = obtenerBiblioteca();
+
+    let idsVideojuegos = [];
+
+    if (filtro === "todos") {
+
+        idsVideojuegos = [
+            ...biblioteca.jugados,
+            ...biblioteca.pendientes,
+            ...biblioteca.favoritos
+        ];
+
+    } else {
+
+        idsVideojuegos = biblioteca[filtro];
+
+    }
+
+    // Evitar videojuegos repetidos
+
+    idsVideojuegos = [...new Set(idsVideojuegos)];
+
+    // Buscar información de los videojuegos
+
+    let juegosMostrar = videojuegos.filter(function(videojuego) {
+
+        return idsVideojuegos.includes(videojuego.id);
+
+    });
+
+ // Aplicar búsqueda
+
+    if (textoBusqueda !== "") {
+
+        juegosMostrar = juegosMostrar.filter(function(videojuego) {
+
+            return videojuego.nombre
+                .toLowerCase()
+                .includes(textoBusqueda.toLowerCase());
+
+        });
+
+    }
+
+    contenedorBiblioteca.innerHTML = "";
+
+    if (juegosMostrar.length === 0) {
+
+        mensajeBibliotecaVacio.style.display = "block";
+
+        if (textoBusqueda !== "") {
+
+            document.getElementById("texto-biblioteca-vacio").textContent =
+                "No encontramos videojuegos que coincidan con tu búsqueda.";
+
+        } else {
+
+            document.getElementById("texto-biblioteca-vacio").textContent =
+                "No tienes videojuegos guardados en esta categoría.";
+
+        }
+
+        return;
+
+    }
+
+    mensajeBibliotecaVacio.style.display = "none";
+
+    juegosMostrar.forEach(function(videojuego) {
+
+        const tarjeta = document.createElement("div");
+
+        tarjeta.classList.add("tarjeta-juego");
+
+        const esJugado = biblioteca.jugados.includes(videojuego.id);
+        const esPendiente = biblioteca.pendientes.includes(videojuego.id);
+        const esFavorito = biblioteca.favoritos.includes(videojuego.id);
+
+        let estado = "";
+
+        if (esJugado) {
+
+            estado = `
+                <span class="biblioteca-estado estado-jugado">
+                    Jugado
+                </span>
+            `;
+
+        } else if (esPendiente) {
+
+            estado = `
+                <span class="biblioteca-estado estado-pendiente">
+                    Pendiente
+                </span>
+            `;
+
+        }
+
+        if (esFavorito) {
+
+            estado += `
+                <span class="biblioteca-estado estado-favorito">
+                    Favorito
+                </span>
+            `;
+
+        }
+
+        tarjeta.innerHTML = `
+    <img 
+        src="${videojuego.imagen}" 
+        alt="${videojuego.nombre}" 
+        class="imagen-juego"
+    >
+
+    <div class="contenido-juego">
+
+        <h3>${videojuego.nombre}</h3>
+
+        <p>${videojuego.genero}</p>
+
+        <div class="biblioteca-info">
+            <span>⭐ ${videojuego.valoracion}</span>
+            <span>${videojuego.plataforma}</span>
+            <span>${videojuego.anio}</span>
+        </div>
+
+        <div>
+            ${estado}
+        </div>
+
+        <div class="biblioteca-acciones">
+
+            <a 
+                href="detalle-videojuego.html?id=${videojuego.id}" 
+                class="btn-detalle"
+            >
+                Ver detalle
+            </a>
+
+            <button 
+                class="btn-quitar-biblioteca"
+                data-id="${videojuego.id}"
+            >
+                Quitar
+            </button>
+
+        </div>
+
+    </div>
+`;
+
+        contenedorBiblioteca.appendChild(tarjeta);
+
+    });
+
+    agregarEventosQuitar();
+
+}
+
+// QUITAR VIDEOJUEGO DE LA BIBLIOTECA
+
+function agregarEventosQuitar() {
+
+    const botonesQuitar = document.querySelectorAll(".btn-quitar-biblioteca");
+
+    botonesQuitar.forEach(function(boton) {
+
+        boton.addEventListener("click", function() {
+
+            const idVideojuego = Number(boton.dataset.id);
+
+            const confirmar = confirm(
+                "¿Estás seguro de que quieres quitar este videojuego de tu biblioteca?"
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            const biblioteca = obtenerBiblioteca();
+
+            biblioteca.jugados =
+                biblioteca.jugados.filter(function(id) {
+                    return id !== idVideojuego;
+                });
+
+            biblioteca.pendientes =
+                biblioteca.pendientes.filter(function(id) {
+                    return id !== idVideojuego;
+                });
+
+            biblioteca.favoritos =
+                biblioteca.favoritos.filter(function(id) {
+                    return id !== idVideojuego;
+                });
+
+            guardarBiblioteca(biblioteca);
+
+            const filtroActivo = document.querySelector(
+                ".biblioteca-filtros .filtro-activo"
+            );
+
+            const filtro = filtroActivo.dataset.filtro;
+
+            mostrarBiblioteca(
+                filtro,
+                buscarVideojuego.value
+            );
+
+            actualizarEstadisticasBiblioteca();
+
+            actualizarProgresoBiblioteca();
+
+        });
+
+    });
+
+}
+
+// ACTUALIZAR ESTADÍSTICAS
+
+function actualizarEstadisticasBiblioteca() {
+
+    const biblioteca = obtenerBiblioteca();
+
+    const totalVideojuegos = new Set([
+        ...biblioteca.jugados,
+        ...biblioteca.pendientes,
+        ...biblioteca.favoritos
+    ]).size;
+
+    document.getElementById("total-juegos").textContent =
+        totalVideojuegos;
+
+    document.getElementById("total-jugados").textContent =
+        biblioteca.jugados.length;
+
+    document.getElementById("total-pendientes").textContent =
+        biblioteca.pendientes.length;
+
+    document.getElementById("total-favoritos").textContent =
+        biblioteca.favoritos.length;
+
+}
+
+// FILTROS
+
+botonesFiltro.forEach(function(boton) {
+
+    boton.addEventListener("click", function() {
+
+        botonesFiltro.forEach(function(boton) {
+
+            boton.classList.remove("filtro-activo");
+
+        });
+
+        boton.classList.add("filtro-activo");
+
+        const filtro = boton.dataset.filtro;
+
+        mostrarBiblioteca(
+            filtro,
+            buscarVideojuego.value
+        );
+
+    });
+
+});
+
+// BUSCADOR
+
+if (buscarVideojuego) {
+
+    buscarVideojuego.addEventListener("input", function() {
+
+        const filtroActivo = document.querySelector(
+            ".biblioteca-filtros .filtro-activo"
+        );
+
+        const filtro = filtroActivo.dataset.filtro;
+
+        mostrarBiblioteca(
+            filtro,
+            buscarVideojuego.value
+        );
+
+    });
+
+}
+
+// INICIAR BIBLIOTECA
+
+if (contenedorBiblioteca) {
+
+    mostrarBiblioteca();
+
+    actualizarEstadisticasBiblioteca();
+
+    actualizarProgresoBiblioteca();
+
+}
+
+// ACTUALIZAR PROGRESO DE LA BIBLIOTECA
+
+function actualizarProgresoBiblioteca() {
+
+    const biblioteca = obtenerBiblioteca();
+
+    const totalVideojuegos = new Set([
+        ...biblioteca.jugados,
+        ...biblioteca.pendientes,
+        ...biblioteca.favoritos
+    ]).size;
+
+    const totalJugados = biblioteca.jugados.length;
+
+    let porcentaje = 0;
+
+    if (totalVideojuegos > 0) {
+
+        porcentaje = Math.round(
+            (totalJugados / totalVideojuegos) * 100
+        );
+
+    }
+
+    document.getElementById("porcentaje-progreso").textContent =
+        porcentaje + "%";
+
+    document.getElementById("barra-progreso-llenado").style.width =
+        porcentaje + "%";
+
+    document.getElementById("texto-progreso").textContent =
+        totalJugados +
+        " de " +
+        totalVideojuegos +
+        " videojuegos jugados";
+}
