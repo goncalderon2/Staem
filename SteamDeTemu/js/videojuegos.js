@@ -539,12 +539,43 @@ function cargarDetalleVideojuego() {
 
 
                     <p>
-
-                        <strong>Valoración:</strong>
+                        <strong>Valoración general:</strong>
 
                         ⭐ ${videojuego.valoracion} / 10
-
                     </p>
+
+                    <div class="valoracion-personal">
+
+                        <label for="valoracion-personal">
+                            👤 Mi valoración
+                        </label>
+
+                        <div class="valoracion-form">
+
+                            <input
+                                type="number"
+                                id="valoracion-personal"
+                                min="1"
+                                max="10"
+                                step="0.1"
+                                placeholder="Ej: 8.5"
+                            >
+
+                            <button
+                                type="button"
+                                id="guardar-valoracion"
+                            >
+                                Guardar valoración
+                            </button>
+
+                        </div>
+
+                        <p
+                            id="mensaje-valoracion"
+                            class="mensaje-valoracion"
+                        ></p>
+
+                    </div>
 
                 </div>
 

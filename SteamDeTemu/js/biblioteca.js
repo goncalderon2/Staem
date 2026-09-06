@@ -19,7 +19,8 @@ function obtenerBiblioteca() {
         return {
             favoritos: [],
             jugados: [],
-            pendientes: []
+            pendientes: [],
+            valoraciones: {}
         };
 
     }
@@ -27,7 +28,17 @@ function obtenerBiblioteca() {
 
     // Convertimos el texto guardado
     // en un objeto JavaScript
-    return JSON.parse(biblioteca);
+    const datos = JSON.parse(biblioteca);
+
+
+    // Comprobamos que exista el apartado
+    // de valoraciones
+    if (!datos.valoraciones) {
+        datos.valoraciones = {};
+    }
+
+
+    return datos;
 
 }
 
@@ -382,6 +393,110 @@ function iniciarBotonesBiblioteca() {
 
 }
 
+// ========================================
+// VALORACIÓN PERSONAL
+// ========================================
+
+function guardarValoracion(idVideojuego, valoracion) {
+
+    const biblioteca = obtenerBiblioteca();
+
+    idVideojuego = Number(idVideojuego);
+    valoracion = Number(valoracion);
+
+    biblioteca.valoraciones[idVideojuego] = valoracion;
+
+    guardarBiblioteca(biblioteca);
+}
+
+
+function obtenerValoracion(idVideojuego) {
+
+    const biblioteca = obtenerBiblioteca();
+
+    idVideojuego = Number(idVideojuego);
+
+    return biblioteca.valoraciones[idVideojuego];
+}
+
+
+function iniciarValoracion() {
+
+    const campoValoracion =
+        document.getElementById("valoracion-personal");
+
+    const botonGuardar =
+        document.getElementById("guardar-valoracion");
+
+    const mensaje =
+        document.getElementById("mensaje-valoracion");
+
+
+    // Si no estamos en la página de detalle,
+    // no hacemos nada
+    if (!campoValoracion || !botonGuardar) {
+        return;
+    }
+
+
+    // Obtener el ID del videojuego desde la URL
+    const parametros =
+        new URLSearchParams(window.location.search);
+
+    const idVideojuego =
+        Number(parametros.get("id"));
+
+
+    // Comprobar si ya existe una valoración
+    const valoracionGuardada =
+        obtenerValoracion(idVideojuego);
+
+
+    // Si ya había una valoración,
+    // la mostramos en el input
+    if (valoracionGuardada !== undefined) {
+
+        campoValoracion.value =
+            valoracionGuardada;
+
+        mensaje.textContent =
+            `Tu valoración actual es ${valoracionGuardada} / 10.`;
+    }
+
+
+    // Guardar valoración
+    botonGuardar.addEventListener("click", function() {
+
+        const valoracion =
+            Number(campoValoracion.value);
+
+
+        // Comprobar que esté entre 1 y 10
+        if (
+            isNaN(valoracion) ||
+            valoracion < 1 ||
+            valoracion > 10
+        ) {
+
+            mensaje.textContent =
+                "La valoración debe estar entre 1 y 10.";
+
+            return;
+        }
+
+
+        guardarValoracion(
+            idVideojuego,
+            valoracion
+        );
+
+
+        mensaje.textContent =
+            `Tu valoración es ${valoracion} / 10.`;
+
+    });
+
+}
 
 // ========================================
 // INICIAR
@@ -390,6 +505,8 @@ function iniciarBotonesBiblioteca() {
 iniciarBotonesBiblioteca();
 
 actualizarBotones();
+
+iniciarValoracion();
 
 // ELEMENTOS DE LA BIBLIOTECA
 
