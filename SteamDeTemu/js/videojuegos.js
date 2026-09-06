@@ -608,12 +608,12 @@ function cargarDetalleVideojuego() {
                 </div>
 
 
-                <a
-                    href="catalogo.html"
+                <button
                     class="btn-volver"
+                    onclick="history.back()"
                 >
-                    ← Volver al catálogo
-                </a>
+                    ← Volver
+                </button>
 
             </div>
 

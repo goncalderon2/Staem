@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Crea tu cuenta en SteamdeTemu, tu biblioteca digital de videojuegos.">
+
+    <title>Registro | SteamdeTemu</title>
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- CSS responsive -->
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <a href="index.html" class="logo">
+        Steam<span>deTemu</span>
+    </a>
+
+    <nav class="navbar">
+
+        <a href="index.html">Inicio</a>
+
+        <a href="catalogo.html">Catálogo</a>
+
+        <a href="biblioteca.html">Mi Biblioteca</a>
+
+        <a href="nosotros.html">Nosotros</a>
+
+        <a href="contacto.html">Contacto</a>
+
+        <a href="login.html" class="btn-login">
+            Iniciar sesión
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- CONTENIDO PRINCIPAL -->
+<main>
+
+    <section class="auth-section">
+
+        <div class="auth-card">
+
+            <h1>Crear cuenta</h1>
+
+            <p class="auth-subtitulo">
+                Regístrate para guardar tus videojuegos favoritos.
+            </p>
+
+            <!-- Mensaje de error o éxito (oculto por defecto) -->
+            <p id="mensaje-registro" class="mensaje-formulario"></p>
+
+            <form id="form-registro">
+
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmar-password">Confirmar contraseña</label>
+                    <input type="password" id="confirmar-password" name="confirmar-password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-auth">
+                    Crear cuenta
+                </button>
+
+            </form>
+
+            <div class="auth-enlace">
+                <p>
+                    ¿Ya tienes cuenta?
+                    <a href="login.html">Inicia sesión aquí</a>
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <p>
+        © 2026 SteamdeTemu - Biblioteca de Videojuegos
+    </p>
+
+    <p>
+        Proyecto académico desarrollado por
+        Fernanda Fajardo, Matías Tiznado y Gonzalo Calderón.
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+<script src="js/usuarios.js"></script>
+<script src="js/main.js"></script>
+<script src="js/registro.js"></script>
+
+</body>
+
+</html>
