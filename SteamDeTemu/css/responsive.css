@@ -167,3 +167,11 @@
     }
 
 }
+
+@media (max-width: 600px) {
+
+    .contenedor-videojuegos {
+        grid-template-columns: 1fr;
+    }
+
+}
